@@ -2,10 +2,18 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["giphy.com"],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
+    remotePatterns:[
+      {
+        protocol: "https",
+        hostname: "media.giphy.com",
+        pathname: "/media/**",
+      },
+      {
+        protocol: "https",
+        hostname: "i.giphy.com",
+        pathname: "/**",
+      },
+    ]
   },
 };
 
