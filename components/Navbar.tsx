@@ -11,12 +11,9 @@ const NavBarItem = ({
   classprops?: string;
 }) => (
   <li
-    className={`relative mx-4 cursor-pointer text-white transition-all duration-300 group ${classprops}`}
+    className={`relative mx-4 cursor-pointer text-slate-400 font-semibold text-sm transition-all duration-300 hover:text-primary ${classprops}`}
   >
-    <span className="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-500 transition-all duration-300">
-      {title}
-    </span>
-    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
+    {title}
   </li>
 );
 
@@ -25,70 +22,62 @@ const Navbar = () => {
 
   return (
     <nav
-      className="w-full flex justify-between items-center px-6 md:px-12 lg:px-20 py-4 
-  bg-gradient-to-r from-[#0f0e13] via-[#1a1c24] to-[#0f0e13] fixed top-0 left-0 z-50 shadow-lg"
+      className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#121212]/80 backdrop-blur-md"
     >
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="flex items-center gap-2 group cursor-pointer">
+          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/30">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" fill="white"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5" fill="white"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5" fill="white"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5" fill="white"/>
+            </svg>
+          </div>
+          <span className="text-xl font-extrabold tracking-tight uppercase text-white">Noted</span>
+        </div>
 
-      <h1 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 cursor-pointer">
-        Ethergrid
-      </h1>
+        <ul className="hidden md:flex items-center gap-8">
+          {["Market", "Exchange", "Tutorials", "Wallets"].map((item, index) => (
+            <NavBarItem key={item + index} title={item} />
+          ))}
+        </ul>
 
-      <ul className="hidden md:flex space-x-10 text-white font-medium items-center">
-        {["Market", "Exchange", "Tutorials", "Wallets"].map((item, index) => (
-          <NavBarItem
-            key={item + index}
-            title={item}
-            classprops="hover:scale-105"
-          />
-        ))}
-        <li
-          className="bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 py-2 px-6 rounded-full 
-          cursor-pointer font-semibold shadow-md hover:opacity-90 hover:scale-105 transition-all"
+        <div className="md:hidden flex items-center">
+          {!toggleMenu ? (
+            <HiMenuAlt4
+              size={28}
+              className="text-white cursor-pointer"
+              onClick={() => setToggleMenu(true)}
+            />
+          ) : (
+            <AiOutlineClose
+              size={28}
+              className="text-white cursor-pointer"
+              onClick={() => setToggleMenu(false)}
+            />
+          )}
+        </div>
+
+        <div
+          className={`fixed top-0 right-0 w-72 h-screen bg-[#121212]/95 backdrop-blur-xl
+          shadow-xl flex flex-col items-start p-6 space-y-6 text-white transform transition-transform duration-500 ease-in-out z-50 list-none border-l border-primary/15
+          ${toggleMenu ? "translate-x-0" : "translate-x-full"}`}
         >
-          Login
-        </li>
-      </ul>
-
-      <div className="md:hidden flex items-center">
-        {!toggleMenu ? (
-          <HiMenuAlt4
-            size={28}
-            className="text-white cursor-pointer"
-            onClick={() => setToggleMenu(true)}
-          />
-        ) : (
-          <AiOutlineClose
-            size={28}
-            className="text-white cursor-pointer"
-            onClick={() => setToggleMenu(false)}
-          />
-        )}
-      </div>
-
-      <div
-        className={`fixed top-0 right-0 w-72 h-screen bg-gradient-to-b from-[#1a1c24] via-[#111113] to-[#0f0e13] 
-        shadow-xl flex flex-col items-start p-6 space-y-6 text-white transform transition-transform duration-500 ease-in-out z-50 list-none
-        ${toggleMenu ? "translate-x-0" : "translate-x-full"}`}
-      >
-        <li className="text-xl w-full flex justify-end">
-          <AiOutlineClose
-            className="cursor-pointer hover:text-red-400 transition"
-            onClick={() => setToggleMenu(false)}
-          />
-        </li>
-        {["Market", "Exchange", "Tutorials", "Wallets"].map((item, index) => (
-          <NavBarItem
-            key={item + index}
-            title={item}
-            classprops="text-lg w-full hover:scale-105"
-          />
-        ))}
-        <li
-          className="bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 py-2 px-6 rounded-full 
-          cursor-pointer font-semibold shadow-md hover:opacity-90 transition-all mt-4 list-none"
-        >
-          Login
-        </li>
+          <li className="text-xl w-full flex justify-end list-none">
+            <AiOutlineClose
+              className="cursor-pointer hover:text-primary transition"
+              onClick={() => setToggleMenu(false)}
+            />
+          </li>
+          {["Market", "Exchange", "Tutorials", "Wallets"].map((item, index) => (
+            <NavBarItem
+              key={item + index}
+              title={item}
+              classprops="text-lg w-full"
+            />
+          ))}
+        </div>
       </div>
     </nav>
   );

@@ -12,7 +12,7 @@ interface TransactionProps {
   message: string;
   keyword: string;
   timestamp: string;
-  amount : string;
+  amount: string;
 }
 
 const TransactionCard = ({
@@ -56,63 +56,63 @@ const TransactionCard = ({
   }, [keyword]);
 
   return (
-    <div className="bg-gradient-to-br from-[#1e1e2f] via-[#2a2a3d] to-[#1c1c27] rounded-2xl shadow-xl p-5 w-full max-w-md border border-gray-700 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+    <div className="glass-dark p-6 rounded-[2rem] border border-white/5 hover:border-primary/40 transition-all group cursor-default w-full max-w-md">
+      {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <SiEthereum className="text-blue-400" size={28} />
-        <span className="text-xs text-gray-400">{timestamp}</span>
+        <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+          <SiEthereum className="text-primary" size={16} />
+        </div>
+        <span className="text-[10px] font-bold text-slate-600 uppercase">{timestamp}</span>
       </div>
 
-      <div className="mb-3 space-y-1">
-        <p className="text-sm text-gray-300">
-          <span className="font-semibold text-white">Sender: </span>
+      {/* Sender & Amount */}
+      <div className="space-y-3 mb-4">
+        <div className="flex justify-between text-[10px] uppercase font-bold tracking-widest">
+          <span className="text-slate-600">Sender</span>
           <Link
             href={`https://sepolia.etherscan.io/address/${sender}`}
             target="_blank"
-            className="hover:underline"
+            className="font-mono text-slate-300 hover:underline"
           >
             {formatAddress(sender)}
           </Link>
-        </p>
-        <p className="text-sm text-gray-300">
-          <span className="font-semibold text-white">Receiver: </span>
-          <Link
-            href={`https://sepolia.etherscan.io/address/${receiver}`}
-            className="hover:underline"
-            target="_blank"
-          >
-            {formatAddress(receiver)}
-          </Link>
-        </p>
-
-
-        <p className="text-sm text-gray-300">
-          <span className="font-semibold text-white">Amount: </span>
-          <span className="text-green-400">{Number(amount)} ETH</span>
-        </p>
+        </div>
+        <div className="flex justify-between text-[10px] uppercase font-bold tracking-widest">
+          <span className="text-slate-600">Value</span>
+          <span className="text-primary">{Number(amount)} ETH</span>
+        </div>
       </div>
 
-      {message && (
-        <p className="text-gray-200 text-sm italic mb-3 border-l-4 border-blue-500 pl-3">
-          "{message}"
-        </p>
-      )}
-
+      {/* GIF Image */}
       {gifUrl && (
-        <div className="w-full h-56 overflow-hidden rounded-xl mb-3 border border-gray-600">
+        <div className="relative overflow-hidden rounded-xl aspect-[4/3] mb-4 bg-slate-900">
           <Image
             src={gifUrl}
             alt={keyword}
             width={600}
             height={600}
             unoptimized={true}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-75 group-hover:brightness-100"
           />
+          {message && (
+            <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black to-transparent">
+              <p className="text-xs font-semibold text-white">"{message}"</p>
+            </div>
+          )}
         </div>
       )}
 
-      <p className="text-xs text-gray-400 text-right">
-        Keyword: <span className="text-blue-400">{keyword}</span>
-      </p>
+      {/* Message fallback when no gif */}
+      {!gifUrl && message && (
+        <p className="text-slate-300 text-sm mb-4 border-l-4 border-primary pl-3 italic">
+          "{message}"
+        </p>
+      )}
+
+      {/* Keyword tag */}
+      <div className="flex items-center gap-1 text-[10px] text-primary font-black uppercase tracking-widest">
+        <span className="text-xs">#</span> {keyword}
+      </div>
     </div>
   );
 };

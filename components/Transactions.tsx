@@ -30,16 +30,19 @@ const Transactions = () => {
   return (
     <>
       {account && (
-        <div className="w-full bg-gradient-to-br from-[#0f0e13] via-[#1a1c24] to-[#0f0e13] min-h-screen py-12">
-          <div className="flex flex-col md:px-12 px-4">
-            <h3 className="text-white text-3xl font-bold text-center my-2">
-              Latest Transactions
-            </h3>
+        <div className="w-full bg-[#121212] py-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex items-end justify-between mb-12 border-l-4 border-primary pl-6">
+              <div className="space-y-1">
+                <h2 className="text-4xl font-extrabold tracking-tight text-white uppercase italic">Live Feed</h2>
+                <p className="text-slate-500 font-medium">Real-time pulse of the Crimson network</p>
+              </div>
+            </div>
 
             <div
-              className="grid gap-6 mt-10 
-            grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 
-            place-items-center"
+              className="grid gap-6
+              grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4
+              place-items-center"
             >
               {[...transactions]
                 .reverse()
@@ -50,13 +53,12 @@ const Transactions = () => {
             </div>
 
             {visibleCount < transactions.length && (
-              <div className="flex justify-center mt-8">
+              <div className="flex justify-center mt-10">
                 <button
                   onClick={() => setVisibleCount((prev) => prev + 8)}
-                  className="px-6 py-2 rounded-full bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 
-                  text-white font-semibold shadow-md hover:opacity-90 hover:scale-105 transition-all cursor-pointer"
+                  className="px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-red-600 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20 uppercase tracking-wider text-sm cursor-pointer"
                 >
-                  Show More
+                  Access Archives →
                 </button>
               </div>
             )}

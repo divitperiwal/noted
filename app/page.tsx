@@ -2,14 +2,11 @@ import { Navbar, Welcome, Transactions, Footer } from "@/components/index";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#121212]">
       <Navbar />
-
-      <div className="pt-16 lg:pt-4">
-        <Welcome />
-        <Transactions />
-        <Footer />  
-      </div>
+      <Welcome />
+      <Transactions />
+      <Footer />
     </div>
   );
 };

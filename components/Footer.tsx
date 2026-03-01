@@ -3,58 +3,36 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-gradient-to-r from-[#0f0e13] via-[#1a1c24] to-[#0f0e13] px-6 md:px-12 lg:px-20 py-10 border-t border-gray-800 shadow-inner">
-      <div className="max-w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
-
-
-        <div className="flex flex-col items-center md:items-start">
-          <h1 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 cursor-pointer">
-            Ethergrid
-          </h1>
-          <p className="text-gray-400 text-sm mt-2">
-            Empowering your journey into Web3 and Blockchain.
-          </p>
-        </div>
-
-        <div className="flex flex-col items-center">
-          <h3 className="text-white font-semibold mb-3">Explore</h3>
-          <ul className="flex flex-wrap justify-center gap-6 text-sm">
-            {["Market", "Exchange", "Tutorials", "Wallets"].map((link) => (
-              <li
-                key={link}
-                className="relative cursor-pointer text-gray-300 transition group"
-              >
-                <span className="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-500 transition">
-                  {link}
-                </span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex flex-col items-center md:items-end">
-          <h3 className="text-white font-semibold mb-3">Stay Connected</h3>
-          <p className="text-gray-400 text-sm">help@ethergrid.com</p>
-          <div className="flex gap-5 mt-3">
-            <Link href="https://www.linkedin.com/in/divitperiwal/" className="text-gray-400 hover:text-blue-400 transition">
-              LinkedIn
-            </Link>
-            <Link href="https://www.instagram.com/divit_periwal/?" className="text-gray-400 hover:text-purple-400 transition">
-              Instagram
-            </Link>
-            <Link href="https://github.com/divitperiwal/" className="text-gray-400 hover:text-pink-400 transition">
-              GitHub
-            </Link>
+    <footer className="border-t border-white/5 py-12 bg-[#121212]">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+        {/* Logo */}
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" fill="white"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5" fill="white"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5" fill="white"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5" fill="white"/>
+            </svg>
           </div>
+          <span className="font-bold uppercase tracking-wider text-white">Noted</span>
         </div>
-      </div>
 
-      <div className="w-full h-px bg-gray-700 my-6" />
+        {/* Copyright */}
+        <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">© 2025 Crimson Protocol. All Rights Reserved.</p>
 
-      <div className="max-w-full mx-auto flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs">
-        <p>© 2025 Ethergrid</p>
-        <p className="mt-2 md:mt-0">All rights reserved</p>
+        {/* Social Links */}
+        <div className="flex gap-6">
+          <Link href="https://www.linkedin.com/in/divitperiwal/" className="text-slate-500 hover:text-primary transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          </Link>
+          <Link href="https://github.com/divitperiwal/" className="text-slate-500 hover:text-primary transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </Link>
+          <Link href="https://www.instagram.com/divit_periwal/?" className="text-slate-500 hover:text-primary transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+          </Link>
+        </div>
       </div>
     </footer>
   );

@@ -45,118 +45,133 @@ const Welcome = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f0e13] via-[#1a1c24] to-[#0f0e13] flex justify-center items-center px-6 lg:px-20">
+    <div className="min-h-screen hero-gradient bg-[#121212] flex justify-center items-center px-6 lg:px-20 pt-32 pb-20">
       <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl gap-16">
-        <div className="flex flex-1 flex-col items-start">
-          <h1 className="text-4xl lg:text-6xl font-extrabold text-white leading-tight drop-shadow-md">
-            Send Crypto
-            <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
-              {" "}
-              Anywhere
+        {/* Left side - Hero text */}
+        <div className="flex flex-1 flex-col items-start space-y-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-bold uppercase tracking-widest">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            <br />
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-green-400 bg-clip-text text-transparent">
-              Across the Globe
-            </span>
+            Pro Web3 Social Protocol
+          </div>
+
+          <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-white">
+            Send Crypto <br />
+            <span className="crimson-to-white">with Personality.</span>
           </h1>
-          <p className="mt-6 text-gray-300 text-lg max-w-md leading-relaxed">
-            Explore Web3 with a seamless crypto experience. Send and view details with ease on
-            <span className="text-purple-400 font-semibold"> Ethergrid</span>.
+
+          <p className="text-xl text-slate-400 leading-relaxed max-w-xl">
+            Experience the next evolution of Ethereum transactions on Noted. Express yourself with custom GIF messages and personalized metadata on every transfer. Bold. Professional. Distinct.
           </p>
 
           {!account ? (
             <button
               type="button"
               onClick={connectWallet}
-              className="flex flex-row justify-center items-center mt-8 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 px-7 py-3 rounded-full shadow-lg cursor-pointer hover:opacity-90 transition-all"
+              className="px-6 py-2.5 bg-primary text-white rounded-full font-bold hover:bg-red-600 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20 flex items-center gap-2"
             >
-              <AiFillPlayCircle className="text-white mr-2 text-xl" />
-              <span className="text-white font-semibold">Connect Wallet</span>
+              <AiFillPlayCircle className="text-xl" />
+              Connect Wallet
             </button>
           ) : (
             <button
               type="button"
               onClick={disconnectWallet}
-              className="flex flex-row justify-center items-center mt-8 bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 px-7 py-3 rounded-full shadow-lg cursor-pointer hover:opacity-90 transition-all"
+              className="px-6 py-2.5 bg-primary text-white rounded-full font-bold hover:bg-red-600 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20 flex items-center gap-2"
             >
-              <MdLogout className="text-white mr-2 text-xl" />
-              <span className="text-white font-semibold">
-                Disconnect ({formatAddress(account)})
-              </span>
+              <MdLogout className="text-xl" />
+              Disconnect ({formatAddress(account)})
             </button>
           )}
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full mt-12 select-none">
-            {[
-              "Reliability",
-              "Security",
-              "Ethereum",
-              "Web 3.0",
-              "Low Fees",
-              "Blockchain",
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="p-4 text-white text-sm font-medium text-center bg-[#1c1f2b]/60 backdrop-blur-md rounded-lg border border-gray-700 hover:border-purple-500 transition-all cursor-normal"
-              >
-                {item}
-              </div>
-            ))}
+          <div className="grid grid-cols-3 gap-4 max-w-md">
+            <div className="p-4 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm">
+              <div className="text-[10px] text-slate-500 mb-1 uppercase tracking-widest font-bold">Reliability</div>
+              <div className="text-lg font-bold text-white">99.99%</div>
+            </div>
+            <div className="p-4 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm">
+              <div className="text-[10px] text-slate-500 mb-1 uppercase tracking-widest font-bold">Network</div>
+              <div className="text-lg font-bold text-white">Sepolia</div>
+            </div>
+            <div className="p-4 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm">
+              <div className="text-[10px] text-slate-500 mb-1 uppercase tracking-widest font-bold">Gas Flow</div>
+              <div className="text-lg font-bold text-white">Optimized</div>
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col flex-1 items-center justify-start w-full">
-          <div className="p-5 flex flex-col justify-between rounded-2xl h-44 w-full sm:w-80 bg-[#1c1f2b]/70 backdrop-blur-xl shadow-xl border border-gray-700">
-            <div className="flex justify-between items-start">
-              <div className="w-12 h-12 rounded-full border-2 border-white flex justify-center items-center bg-gradient-to-br from-purple-500 to-pink-500 shadow-md">
-                <SiEthereum size={24} color="#fff" />
+        {/* Right side - Wallet card + Form */}
+        <div className="flex flex-col flex-1 items-center justify-start w-full relative">
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary to-crimson-deep rounded-[2rem] blur-xl opacity-20"></div>
+          <div className="relative glass-dark p-8 rounded-[2rem] shadow-2xl space-y-6 w-full sm:w-96">
+            {/* Wallet header */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-crimson-deep flex items-center justify-center">
+                  <SiEthereum size={20} color="#fff" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Active Wallet</p>
+                  {account ? (
+                    <Link
+                      href={`https://etherscan.io/address/${account}`}
+                      target="_blank"
+                    >
+                      <p className="font-mono text-sm text-slate-200 cursor-pointer hover:underline">
+                        {formatAddress(account)}
+                      </p>
+                    </Link>
+                  ) : (
+                    <p className="font-mono text-sm text-slate-600">Not connected</p>
+                  )}
+                </div>
               </div>
-              <BsInfoCircle size={18} color="#fff" />
+              <BsInfoCircle size={18} className="text-slate-500" />
             </div>
-            <div>
-              <Link
-                href={`https://etherscan.io/address/${account}`}
-                target="_blank"
-              >
-                <p
-                  className={`text-gray-300 text-sm ${
-                    account ? "cursor-pointer hover:underline" : ""
-                  }`}
-                >
-                  {account ? formatAddress(account) : "..."}
-                </p>
-              </Link>
-              <p className="text-white font-semibold text-lg mt-1">Ethereum</p>
+
+            {/* Form inputs */}
+            <div className="space-y-4">
+              <div>
+                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">Recipient Address</label>
+                <Input
+                  placeholder="0x..."
+                  name="addressTo"
+                  type="text"
+                  handleChange={(e) => setRecipient(e.target.value)}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">Amount (ETH)</label>
+                  <Input
+                    placeholder="0.00"
+                    name="amount"
+                    type="number"
+                    handleChange={(e) => setAmount(Number(e.target.value))}
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">GIF Keyword</label>
+                  <Input
+                    placeholder="e.g. speed"
+                    name="keyword"
+                    type="text"
+                    handleChange={(e) => setKeyword(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 ml-1">Personal Message</label>
+                <Input
+                  placeholder="Enter transaction note..."
+                  name="message"
+                  type="text"
+                  handleChange={(e) => setMessage(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
-
-          <div className="p-6 sm:w-96 w-full flex flex-col justify-start items-center bg-[#1c1f2b]/70 backdrop-blur-xl rounded-2xl mt-6 shadow-xl border border-gray-700">
-            <Input
-              placeholder="Address To"
-              name="addressTo"
-              type="text"
-              handleChange={(e) => setRecipient(e.target.value)}
-            />
-            <Input
-              placeholder="Amount (ETH)"
-              name="amount"
-              type="number"
-              handleChange={(e) => setAmount(Number(e.target.value))}
-            />
-            <Input
-              placeholder="Keyword (Gif)"
-              name="keyword"
-              type="text"
-              handleChange={(e) => setKeyword(e.target.value)}
-            />
-            <Input
-              placeholder="Enter Message"
-              name="message"
-              type="text"
-              handleChange={(e) => setMessage(e.target.value)}
-            />
-
-            <div className="h-px w-full bg-gray-600/60 my-4" />
 
             {isLoading ? (
               <Loader />
@@ -164,9 +179,15 @@ const Welcome = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="text-white w-full py-3 rounded-full cursor-pointer bg-gradient-to-r from-blue-500 to-cyan-400 shadow-lg hover:opacity-90 transition-all"
+                disabled={!account}
+                className={`w-full py-5 text-white rounded-2xl font-bold text-lg shadow-xl transition-all flex items-center justify-center gap-2 ${
+                  account
+                    ? "bg-primary hover:bg-red-600 shadow-primary/20 active:scale-[0.98] cursor-pointer"
+                    : "bg-slate-700 cursor-not-allowed opacity-50"
+                }`}
               >
-                Send Now
+                Execute Transaction
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
               </button>
             )}
           </div>
